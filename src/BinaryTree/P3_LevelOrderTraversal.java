@@ -1,5 +1,8 @@
 package BinaryTree;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class P3_LevelOrderTraversal {
     public static class Node{
         int data;
@@ -38,20 +41,22 @@ public class P3_LevelOrderTraversal {
         }
         public void displayLevelOrder(Node root){
 
-            if(root.left==null) return;
+            // rpa-> remove print add children algo
 
+            Queue<Node> temp=new LinkedList<>();
+            temp.add(root);
 
-            System.out.print(root.data+" ");
-            System.out.println();
-            System.out.print(root.left.data+" ");
-            System.out.print(root.right.data+" ");
+            while (!temp.isEmpty()){
 
-            System.out.println();
+                while (!temp.isEmpty()){
+                    System.out.print(temp.poll().data+" ");
+                }
 
-            displayLevelOrder(root.left);
-            displayLevelOrder(root.right);
+                if(root.left!=null) temp.add(root.left);
+                if(root.right!=null) temp.add(root.right);
 
-
+                System.out.println();
+            }
 
         }
 
@@ -61,6 +66,7 @@ public class P3_LevelOrderTraversal {
 
         BinaryTree tree=new BinaryTree();
         Node root=tree.createBinaryTree();
+
 
         tree.displayLevelOrder(root);
     }
