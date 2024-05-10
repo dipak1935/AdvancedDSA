@@ -1,5 +1,6 @@
 package BinaryTree;
 
+import java.util.ArrayDeque;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -39,24 +40,48 @@ public class P3_LevelOrderTraversal {
 
             return root;
         }
-        public void displayLevelOrder(Node root){
+        public void displayLevelOrder(Node node){
 
             // rpa-> remove print add children algo
 
-            Queue<Node> temp=new LinkedList<>();
+            Queue<Node> temp=new ArrayDeque<>();
             temp.add(root);
 
             while (!temp.isEmpty()){
 
-                while (!temp.isEmpty()){
-                    System.out.print(temp.poll().data+" ");
-                }
+                int size=temp.size();
 
-                if(root.left!=null) temp.add(root.left);
-                if(root.right!=null) temp.add(root.right);
+                for (int i=0;i<size;i++){
+                    node=temp.remove();
+                    System.out.print(node.data+" ");
+
+                    if(node.left!=null) temp.add(node.left);
+                    if(node.right!=null) temp.add(node.right);
+                }
 
                 System.out.println();
             }
+
+
+            // answer in same line
+//            Queue<Node> queue = new LinkedList<Node>();
+//            queue.add(root);
+//            while (!queue.isEmpty()) {
+//
+//                // poll() removes the present head.
+//                Node tempNode = queue.poll();
+//                System.out.print(tempNode.data + " ");
+//
+//                // Enqueue left child
+//                if (tempNode.left != null) {
+//                    queue.add(tempNode.left);
+//                }
+//
+//                // Enqueue right child
+//                if (tempNode.right != null) {
+//                    queue.add(tempNode.right);
+//                }
+//            }
 
         }
 

@@ -1,6 +1,6 @@
 package BinaryTree;
 
-public class P2_BinaryTreeTraversal {
+public class P2_BinaryTreeTraversalUsingRecursion {
     public static class Node{
         int data;
         Node left,right;
