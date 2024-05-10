@@ -39,38 +39,55 @@ public class P4_BinaryTreeTraversalUsingIteration {
             return root;
         }
         void iterativePrePostInTraversal(Node root){
-            Map<Integer,Integer> pair=new HashMap<>();
+
             Stack<Pair> st=new Stack<>();
             Pair rootPair=new Pair(root,1);
 
             st.push(rootPair);
 
-            while(!st.isEmpty()){
-                Pair top=st.peek();
-                if(top.right==1){
-                    System.out.println("pre "+top.right);
-                    top.right++;
-                }
-                else if(top.right==2){
-                    System.out.println("In "+top.right);
-                    top.right++;
+            String preOrder="PreOrder : ";
+            String inOrder="InOrder : ";
+            String postOrder="PostOrder : ";
+
+            while (!st.isEmpty()){
+
+                Pair curr=st.peek();
+
+                if(curr.val==1){
+
+                    preOrder+=curr.node.data+" ";
+                    if(curr.node.left!=null) st.push(new Pair(curr.node.left,1));
+                    curr.val++;
 
                 }
-                else if(st.peek().right==3){
-                    System.out.println("Post "+top.right);
-                    st.remove(top);
+                else if(curr.val==2){
+                    inOrder+=curr.node.data+" ";
+
+                    if(curr.node.right!=null) st.push(new Pair(curr.node.right,1));
+                    curr.val++;
+                }
+                else{
+                    postOrder+=curr.node.data+" ";
+
+                    st.remove(curr);
                 }
             }
+
+            System.out.println(preOrder);
+            System.out.println(inOrder);
+            System.out.println(postOrder);
+
+
 
 
         }
         public static class Pair{
-            private Node left;
-            private int right;
+            private Node node;
+            private int val;
 
-            Pair(Node left,int right){
-                this.left=left;
-                this.right=right;
+            Pair(Node node,int val){
+                this.node=node;
+                this.val=val;
             }
         }
 
@@ -80,6 +97,8 @@ public class P4_BinaryTreeTraversalUsingIteration {
 
         BinaryTree tree=new BinaryTree();
         Node root=tree.createBinaryTree();
+
+        tree.iterativePrePostInTraversal(root);
 
         
 
