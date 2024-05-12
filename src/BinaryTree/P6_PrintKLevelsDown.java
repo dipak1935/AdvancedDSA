@@ -44,24 +44,24 @@ public class P6_PrintKLevelsDown {
         }
         public void printKLevelsDown(Node root,int k){
 
-            if(root==null||k<0) return;
+            if(root==null) return;
 
-            if(k==0){
-                System.out.print(root.data+" ");
-            }
+            if(k==0) System.out.print(root.data+" ");
 
             printKLevelsDown(root.left,k-1);
             printKLevelsDown(root.right,k-1);
 
         }
 
-        public static void main(String[] args) {
-            BinaryTree tree=new BinaryTree();
-            Node root=tree.createBinaryTree();
 
-            tree.printKLevelsDown(root,2);
+    }
+
+    public static void main(String[] args) {
+        BinaryTree tree=new BinaryTree();
+        Node root=tree.createBinaryTree();
+
+        tree.printKLevelsDown(root,2);
 
 
-        }
     }
 }
