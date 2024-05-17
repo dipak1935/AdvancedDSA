@@ -1,5 +1,6 @@
 package BinaryTree;
 
+
 public class P2_BinaryTreeTraversalUsingRecursion {
     public static class Node{
         int data;
@@ -44,6 +45,7 @@ public class P2_BinaryTreeTraversalUsingRecursion {
 
             displayPreOrder(root.left);
             displayPreOrder(root.right);
+
 
         }
         void displayInOrder(Node root){

@@ -1,9 +1,6 @@
 package BinaryTree;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Stack;
 
 public class P5_NodeToRootPath {
     public static class Node{
@@ -47,8 +44,9 @@ public class P5_NodeToRootPath {
 
             return root;
         }
-        public
+
         ArrayList<Integer> arr=new ArrayList<>();
+
         public boolean nodeToRoot(Node root,int node){
 
             if(root==null) return false;
@@ -72,6 +70,79 @@ public class P5_NodeToRootPath {
 
             return false;
         }
+
+
+        public boolean nodeToRoot2(Node root, int target){
+
+            if(root==null) return false;
+
+            if(root.data==target){
+                arr.add(root.data);
+                return true;
+            }
+
+            if(nodeToRoot2(root.left,target)){
+                arr.add(root.data);
+                return true;
+            }
+
+            if(nodeToRoot2(root.right,target)){
+                arr.add(root.data);
+                return true;
+            }
+
+            return false;
+        }
+
+        public ArrayList<Integer> nodeToRoot3(Node root, int target){
+
+
+            ArrayList<Integer> ans=new ArrayList<>();
+
+            if(root==null) return ans;
+
+            if(root.data==target){
+                ans.add(root.data);
+                return ans;
+            }
+
+            ArrayList<Integer> tempLeft=nodeToRoot3(root.left,target);
+            ArrayList<Integer> tempRight=nodeToRoot3(root.right,target);
+
+            if(!tempLeft.isEmpty()){
+                tempLeft.add(root.data);
+                return tempLeft;
+            }
+            else if(!tempRight.isEmpty()){
+                tempRight.add(root.data);
+                return tempRight;
+            }
+
+            return ans;
+
+        }
+
+        public boolean nodeToRoot4(Node root, int target,ArrayList<Integer> temp){
+
+            if(root==null) return false;
+
+            if(root.data==target){
+                temp.add(root.data);
+                return true;
+            }
+
+            boolean fromLeft=nodeToRoot4(root.left,target,temp);
+            boolean fromRight=nodeToRoot4(root.right,target,temp);
+
+            if(fromLeft||fromRight){
+                temp.add(root.data);
+                return true;
+            }
+
+            return false;
+
+        }
+
         public static void main(String[] args) {
 
             BinaryTree tree=new BinaryTree();
@@ -79,8 +150,17 @@ public class P5_NodeToRootPath {
             Node root=tree.createBinaryTree();
 
 
-            System.out.println(tree.nodeToRoot(root,70));
-            System.out.println(tree.arr);
+            System.out.println(tree.nodeToRoot2(root,70));
+
+            ArrayList<Integer> temp=new ArrayList<>();
+
+            System.out.println(tree.nodeToRoot4(root,70,temp));
+
+            System.out.println(temp);
+
+            System.out.println(tree.nodeToRoot3(root,70));
+
+
         }
 
 

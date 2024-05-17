@@ -26,6 +26,10 @@ public class P3_LevelOrderTraversal {
             Node e = new Node(37);
             Node f = new Node(62);
             Node g = new Node(87);
+            Node h = new Node(30);
+            Node i = new Node(40);
+            Node j = new Node(60);
+            Node k = new Node(70);
 
             root = a;
 
@@ -38,29 +42,35 @@ public class P3_LevelOrderTraversal {
             c.left = f;
             c.right = g;
 
+            e.left=h;
+            e.right=i;
+
+            f.left=j;
+            f.right=k;
+
             return root;
         }
         public void displayLevelOrder(Node node){
 
             // rpa-> remove print add children algo
 
-            Queue<Node> temp=new ArrayDeque<>();
-            temp.add(root);
-
-            while (!temp.isEmpty()){
-
-                int size=temp.size();
-
-                for (int i=0;i<size;i++){
-                    node=temp.remove();
-                    System.out.print(node.data+" ");
-
-                    if(node.left!=null) temp.add(node.left);
-                    if(node.right!=null) temp.add(node.right);
-                }
-
-                System.out.println();
-            }
+//            Queue<Node> queue=new ArrayDeque<>();
+//            queue.add(root);
+//
+//            while (!queue.isEmpty()){
+//
+//                int size=queue.size();
+//
+//                for (int i=0;i<size;i++){
+//                    node=queue.remove();
+//                    System.out.print(node.data+" ");
+//
+//                    if(node.left!=null) queue.add(node.lef);
+//                    if(node.right!=null) queue.add(node.right);
+//                }
+//
+//                System.out.println();
+//            }
 
 
             // answer in same line
@@ -83,6 +93,28 @@ public class P3_LevelOrderTraversal {
 //                }
 //            }
 
+
+            Queue<Node> queue=new LinkedList<>();
+            queue.add(node);
+
+            while (!queue.isEmpty()){
+
+                int size=queue.size();
+
+                for(int i=0;i<size;i++){
+                    Node temp=queue.poll();
+
+                    System.out.print(temp.data+" ");
+
+                    if(temp.left!=null) queue.add(temp.left);
+                    if(temp.right!=null) queue.add(temp.right);
+
+                }
+
+                System.out.println();
+
+
+            }
         }
 
     }
