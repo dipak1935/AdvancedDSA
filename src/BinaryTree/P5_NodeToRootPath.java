@@ -107,6 +107,12 @@ public class P5_NodeToRootPath {
             }
 
             ArrayList<Integer> tempLeft=nodeToRoot3(root.left,target);
+
+            if(!tempLeft.isEmpty()){
+                tempLeft.add(root.data);
+                return tempLeft;
+            }
+
             ArrayList<Integer> tempRight=nodeToRoot3(root.right,target);
 
             if(!tempLeft.isEmpty()){
