@@ -53,28 +53,29 @@ public class P6_PrintKLevelsDown {
 
         }
 
+        public void printKLevels(Node root,int k){
 
-    }
-    public void printKLevels(Node root,int k){
+            if(root==null||k<0) return;
 
-        if(root==null||k<0) return;
+            if(k==0) {
+                System.out.print(root.data+" ");
+                return;
+            }
 
-        if(k==0) {
-            System.out.println(root.data);
-            return;
+            printKLevels(root.left,k-1);
+            printKLevels(root.right,k-1);
+
         }
 
-        printKLevels(root.left,k-1);
-        printKLevels(root.right,k-1);
 
     }
 
+
     public static void main(String[] args) {
-        BinaryTree tree=new BinaryTree();
-        Node root=tree.createBinaryTree();
+        BinaryTree tree = new BinaryTree();
+        Node root = tree.createBinaryTree();
 
-        tree.printKLevelsDown(root,2);
-
+        tree.printKLevels(root,2);
 
     }
 }
