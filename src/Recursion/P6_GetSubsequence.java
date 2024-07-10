@@ -22,6 +22,7 @@ public class P6_GetSubsequence {
             ans.add("");
             System.out.println(ans);
             return ans;
+
         }
 
         char ch=str.charAt(0);

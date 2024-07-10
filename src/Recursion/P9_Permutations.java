@@ -22,6 +22,7 @@ public class P9_Permutations {
             ans.add(new ArrayList<>(temp));
 
             return;
+
         }
 
         for(int num:nums){
